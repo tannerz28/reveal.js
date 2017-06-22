@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js – The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<style type="text/css">
+			.transparent {
+				border: 0 !important;
+				background: none !important;
+			}
+
+			li.heirarchy {
+			    border-left: 1px solid #000;
+			    margin-left: 10px;
+			    margin-top: 5px;
+			    padding-left: 10px;
+			}
+		</style>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Machine Learning</h1>
+					<h3>Human learning done by a computer</h3>
+					<img src="p_resources/robot.png" class="transparent plain" height="35%" width="35%"><br><br>
+					<p style="text-align: left; color: #666"><small>Hit S for notes</small></p>
+				</section>
+
+				<section>
+					<h3>Table of Contents</h3><hr>
+					<ul>
+						<li>
+							<b>Introduction to ML</b>
+							<ul>
+								<li>Definition</li>
+								<li>Purpose</li>
+								<li>Examples</li>
+							</ul>
+						</li>
+						<li>
+							<b>Types of ML</b>
+							<ul>
+								<li>Supervised Learning</li>
+								<li>Unsupervised Learning</li>
+								<li>Semi-supervised Learning</li>
+							</ul>
+						</li>
+						<li>
+							<b>Neural Network</b>
+							<ul>
+								<li>Basic Introduction</li>
+								<li>Demonstration</li>
+							</ul>
+						</li>
+						<li>
+							<b>Conclusion</b>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<section>
+						<h5>Introduction</h5><hr>
+						<h3>What is Machine Learning?</h3>
+						<p>A: A lot of things!</p>
+						<blockquote style="display: inline-block; float: left; width: 40%;">
+							&ldquo;[Machine Learning is the] field of study that gives computers the ability to learn without being explicitly programmed.&rdquo;
+							<br> - Arthur Samuel
+						</blockquote>
+						<blockquote style="float: right; width: 54%">
+							&ldquo;A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.&rdquo;<br> - Tom Mitchell, Carnegie Mellon University
+						</blockquote>
+
+						<aside class="notes">
+							Machine learning is a type of artificial intelligence (AI) that provides computers with the ability to learn without being explicitly programmed. Machine learning focuses on the development of computer programs that can teach themselves to grow and change when exposed to new data.
+						</aside>
+					</section>
+					<section>
+						<h3>Purpose</h3>
+						<p>Predictions</p>
+						<blockquote>
+							&ldquo;ML solves problems that cannot be solved by numerical means alone.&rdquo;
+						</blockquote>
+
+						<aside class="notes">
+							Machine learning is sometimes conflated with data mining, where the latter sub-field focuses more on exploratory data analysis and is known as unsupervised learning. Within the field of data analytics, machine learning is a method used to devise complex models and algorithms that lend themselves to prediction.
+						</aside>
+					</section>
+					<section>
+						<h3>Examples</h3>
+						<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2675494/">Is this cancer?</a><br>
+						<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1316046">How much is that house worth?</a><br>
+						<a href="https://archive.org/stream/nasa_techdoc_19960011791/19960011791_djvu.txt">Will this rocket blow up on lift off?</a><br>
+						<a href="http://techblog.netflix.com/2012/04/netflix-recommendations-beyond-5-stars.html">Will I like that movie?</a> - Netflix movie recommendation<br>
+						<a href="https://www.fastcompany.com/3028414/how-facebooks-machines-got-so-good-at-recognizing-your-face">Who is this?</a> - Facebook facial recognition<br>
+						<a href="https://en.wikipedia.org/wiki/Natural_language_processing#NLP_using_machine_learning">What did you say?</a><br>
+						<a href="http://phys.org/news/2008-09-stanford-autonomous-helicopters.html">How do you fly this thing?</a>
+					</section>
+				</section>
+
+				<section>
+					<h5>Types of Machine Learning</h5><hr>
+					<p>Supervised</p>
+					<p>Unsupervised</p>
+					<p>Semi-supervised</p>
+				</section>
+				<section>
+					<section>
+						<h3>Supervised Machine Learning</h3>
+						<p>The program is 'trained' on a pre-defined set of 'training examples', which then facilitate its ability to reach an accurate conclusion when given new data.</p>
+					</section>
+					<section>
+						<p>It is called supervised learning because the process of an algorithm learning from the training dataset can be thought of as a teacher supervising the learning process. We know the correct answers, the algorithm iteratively makes predictions on the training data and is corrected by the teacher. Learning stops when the algorithm achieves an acceptable level of performance.</p>
+					</section>
+					<section>
+						<p>In the majority of supervised learning applications, the ultimate goal is to develop a finely tuned predictor function h(x) (sometimes called the 'hypothesis'). 'Learning' consists of using sophisticated mathematical algorithms to optimize this function so that, given input data x about a certain domain (say, square footage of a house), it will accurately predict some interesting value h(x) (say, market price for said house).</p><br>
+						<p class="fragment">What would our prediction model look like?</p>
+
+						<aside class="notes">
+							In practice, x almost always represents multiple data points (coefficients). So, for example, a housing price predictor might take not only square-footage (x1) but also number of bedrooms (x2), number of bathrooms (x3), number of floors (x4), year built (x5), zip code (x6), and so forth. Determining which inputs to use is an important part of ML design. However, for the sake of explanation, it is easiest to assume a single input value is used.
+						</aside>
+					</section>	
+					<section>
+						<h2>h(x) = K + V*x</h2>
+						<p>K & V are constants, X is # sq. feet</p>
+						<p>Goal is to find best values for K & V</p><br>
+						<b class="fragment">How do we train this?</b>
+					</section>
+					<section>
+						<blockquote>
+							&ldquo;The goal of ML is never to make 'perfect' guesses, because ML deals in domains where there is no such thing. The goal is to make guesses that are good enough to be useful.&rdquo;
+						</blockquote>
+					</section>
+					<section>
+						<h3>ML Relies on Statistics</h3>
+						<p>Not enough training data = Bad</p>
+						<p>Lack of variety in training data = Bad</p>
+						<br>
+						<p>Ex.: National average salary.</p>
+					</section>
+					<section>
+						<p>Many modern machine learning problems take thousands or even millions of dimensions of data to build predictions using hundreds of coefficients. Predicting how an organism’s genome will be expressed, or what the climate will be like in fifty years, are examples of such complex problems.</p>
+					</section>
+					<section>
+						<p>Supervised ML can be divided into two subcategories:</p>
+						<ul>
+							<li><h4>Regression problems:</h4> Problems where the value being predicted falls somewhere on a continuous spectrum. These systems help us with questions of 'How much?' or 'How many?'.</li><br>
+							<li><h4>Classification problems:</h4> Problems where we seek a yes-or-no prediction, such as 'Is this tumor cancerous?', 'Does this cookie meet our quality standards?', 'Is Jonathon going to be "sick" today?' and so on.</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h3>Regression</h3>
+					<p>Linear</p>
+					<p>Polynomial</p><br>
+					<p class="fragment">I will only be covering Linear Regression</p>
+				</section>
+
+				<section>
+					<section>
+						<h3>Linear Regression</h3>
+						<p>Linear regression is a linear model, e.g. a model that assumes a linear relationship between the input variables (x) and the single output variable (y). More specifically, that y can be calculated from a linear combination of the input variables (x).</p>
+						<p class="fragment">Single input variable (x) = simple linear regression</p>
+						<p class="fragment">Multiple input variables = multiple linear regression</p>
+					</section>
+					<section>
+						<p>Different techniques can be used to prepare or train the linear regression equation from data, the most common of which is called Ordinary Least Squares. It is common to therefore refer to a model prepared this way as Ordinary Least Squares Linear Regression or just Least Squares Regression.</p>
+					</section>
+					<section>
+						<h3>1. Simple Linear Regression</h3>
+						<p>With simple linear regression when we have a single input, we can use statistics to estimate the coefficients.</p>
+					</section>
+					<section>
+						<p>This requires that you calculate statistical properties from the data such as means, standard deviations, correlations and covariance. All of the data must be available to traverse and calculate statistics.</p>
+						<p class="fragment">This is fun as an exercise in excel, but not really useful in practice.</p>
+					</section>
+					<section>
+						<h3>2. Ordinary Least Squares</h3>
+						<p>When we have more than one input we can use Ordinary Least Squares to estimate the values of the coefficients.</p>
+						<p class="fragment">Most commonly used</p>
+					</section>
+					<section>
+						<p>The Ordinary Least Squares procedure seeks to minimize the sum of the squared residuals.</p> 
+						<p>This means that given a regression line through the data we calculate the distance from each data point to the regression line, square it, and sum all of the squared errors together. This is the quantity that ordinary least squares seeks to minimize.</p>
+					</section>
+					<section>
+						<p>This approach treats the data as a matrix and uses linear algebra operations to estimate the optimal values for the coefficients.</p> 
+						<p>It means that all of the data must be available and you must have enough memory to fit the data and perform matrix operations.</p> 
+					</section>
+					<section>
+						<p>It is unusual to implement the Ordinary Least Squares procedure yourself unless as an exercise in linear algebra.</p> 
+						<p>It is more likely that you will call a procedure in a linear algebra library.</p> <br>
+						<p class="fragment">This procedure is very fast to calculate.</p>
+					</section>
+					<section>
+						<img src="p_resources/gpa.jpg">
+					</section>
+					<section>
+						<h3>3. Gradient Descent</h3>
+						<p>When there are one or more inputs you can use a process of optimizing the values of the coefficients by iteratively minimizing the error of the model on your training data.</p>
+						<p class="fragment">Most commonly taught</p>
+					</section>
+					<section>
+						<p>This operation is called Gradient Descent and works by starting with random values for each coefficient. The sum of the squared errors are calculated for each pair of input and output values.</p> 
+						<p>A learning rate is used as a scale factor and the coefficients are updated in the direction towards minimizing the error. The process is repeated until a minimum sum squared error is achieved or no further improvement is possible.</p> 
+					</section>
+					<section>
+						<p>When using this method, you must select a learning rate (alpha) parameter that determines the size of the improvement step to take on each iteration of the procedure.</p> 
+						<p>Gradient descent is often taught using a linear regression model because it is relatively straightforward to understand. In practice, it is useful when you have a very large dataset either in the number of rows or the number of columns that may not fit into memory.</p> 
+					</section>
+					<section>
+						<h3>4. Regularization</h3>
+						<p>There are extensions of the training of the linear model called regularization methods.</p> 
+						<p>These seek to both minimize the sum of the squared error of the model on the training data (using ordinary least squares) but also to reduce the complexity of the model (like the number or absolute size of the sum of all coefficients in the model).</p>
+					</section>
+					<section>
+						<p>Two popular examples of regularization procedures:</p>
+						<ul>
+							<li><h4>Lasso Regression:</h4> <small>Where Ordinary Least Squares is modified to also minimize the absolute sum of the coefficients (called L1 regularization)</small></li><br>
+							<li><h4>Ridge Regression:</h4> <small>Where Ordinary Least Squares is modified to also minimize the squared absolute sum of the coefficients (called L2 regularization)</small></li>
+						</ul>
+						<p>These methods are effective to use when there is collinearity in your input values and ordinary least squares would overfit the training data.</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h4>Overfitting</h4>
+						<p>Overfitting refers to a model that models the training data too well.</p>
+					</section>
+					<section>
+						<p>Overfitting happens when a model learns the detail and noise in the training data to the extent that it negatively impacts the performance on the model on new data.</p> 
+						<p>This means that the noise or random fluctuations in the training data is picked up and learned as concepts by the model.</p> 
+						<p>The problem is that these concepts do not apply to new data and negatively impact the models ability to generalize.</p>
+					</section>
+					<section>
+						<p>Overfitting is more likely with nonparametric and nonlinear models that have more flexibility when learning a target function.</p> 
+						<p>As such, many nonparametric machine learning algorithms also include parameters or techniques to limit and constrain how much detail the model learns.</p> 
+					</section>
+					<section>
+						<p>For example, decision trees are a nonparametric machine learning algorithm that are very flexible and are subject to overfitting training data.</p>
+						<p>This problem can be addressed by 'pruning' a tree after it has learned in order to remove some of the detail it has picked up.</p> 
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h4>Underfitting</h4>
+						<p>Underfitting refers to a model that can neither model the training data nor generalize new data.</p>
+					</section>
+					<section>
+						<p>An underfit machine learning model is not a suitable model and will be obvious as it will have poor performance on the training data.</p>
+						<p>Underfitting is often not discussed as it is easy to detect given a good performance metric.</p> 
+						<p>The remedy is to move on and try alternate machine learning algorithms.</p> 
+						<p>Nevertheless, it does provide good contrast to the problem of concept of overfitting.</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>5 Rules of Thumb When Preparing Data For Linear Regression</h3>
+					</section>
+					<section>
+						<h4>1. Linear Assumption</h4>
+						<p>Linear regression assumes that the relationship between your input and output is linear. It does not support anything else.</p> 
+						<p>This may be obvious, but it is good to remember when you have a lot of attributes.</p> 
+						<p>You may need to transform data to make the relationship linear (e.g. log transform for an exponential relationship).</p>
+					</section>
+					<section>
+						<h4>2. Remove Noise</h4>
+						<p>Linear regression assumes that your input and output variables are not noisy.</p> 
+						<p>Consider using data cleaning operations that let you better expose and clarify the signal in your data.</p> 
+						<p>This is most important for the output variable and you want to remove outliers in the output variable (y) if possible.</p>
+					</section>
+					<section>
+						<h4>3. Remove Collinearity</h4>
+						<p>Linear regression will over-fit your data when you have highly correlated input variables.</p> 
+						<p>Consider calculating pairwise correlations for your input data and removing the most correlated.</p>
+					</section>
+					<section>
+						<h4>4. Gaussian Distributions</h4>
+						<p>Linear regression will make more reliable predictions if your input and output variables have a Gaussian distribution.</p> 
+						<p>You may get some benefit using transforms (e.g. log or BoxCox) on you variables to make their distribution more Gaussian looking.</p><br>
+						<p class="fragment">Gaussian Process = Research Topic</p>
+					</section>
+					<section>
+						<h4>5. Rescale Inputs</h4>
+						<p>Linear regression will often make more reliable predictions if you rescale input variables using standardization or normalization.</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Classification</h2>
+					</section>
+					<section>
+						<p>Classification is the problem of identifying to which of a set of categories (sub-populations) a new observation belongs, on the basis of a training set of data containing observations (or instances) whose category membership is known.</p>  
+						<p>Classification is an example of pattern recognition.</p>
+						<p>An algorithm that implements classification is known as a classifier.</p>
+
+						<aside class="notes">
+							An example would be assigning a given email into "spam" or "non-spam" classes or assigning a diagnosis to a given patient as described by observed characteristics of the patient (gender, blood pressure, presence or absence of certain symptoms, etc.).
+						</aside>
+					</section>
+					<section>
+						<h3>Two Types of Classifiers</h3>
+						<p>Binary</p>
+						<p>Non-Binary</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Unsupervised Machine Learning</h3>
+						<p>The program is given a bunch of data and must find patterns and relationships therein.</p>
+						<p>There are no training examples used in this process.</p>
+						<p>A good example is identifying close-knit groups of friends in social network data</p>
+					</section>
+					<section>
+						<p>Unsupervised learning problems can be further grouped into clustering and association problems.</p>
+						<ul>
+							<li><h4>clustering problems:</h4> A clustering problem is where you want to discover the inherent groupings in the data, such as grouping customers by purchasing behavior.</li><br>
+							<li><h4>association problems:</h4> An association rule learning problem is where you want to discover rules that describe large portions of your data, such as people that buy X also tend to buy Y.</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Unsupervised ML Research Topics</h4>
+						<p>Two popular examples of unsupervised ML algorithms are:</p>
+						<ul>
+							<li><b>k-means for clustering problems</b></li>
+							<li><b>Apriori algorithm for association rule learning problems</b></li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Semi-supervised Machine Learning</h3>
+						<p>Problems where you have a large amount of input data (X) and only some of the data is labeled (Y) are called semi-supervised learning problems.</p>
+						<p>A good example is a photo archive where only some of the images are labeled, (e.g. dog, cat, person) and the majority are unlabeled.</p>
+					</section>
+					<section>
+						<p>Many real world machine learning problems fall into this area. This is because it can be expensive or time-consuming to label data as it may require access to domain experts. Whereas unlabeled data is cheap and easy to collect and store.</p><br>
+						<p class="fragment">What do you do with the unlabeled data?</p>
+					</section>
+					<section>
+						<p>You can use unsupervised learning techniques to discover and learn the structure in the input variables.</p>
+						<p>You can also use supervised learning techniques to make best guess predictions for the unlabeled data, feed that data back into the supervised learning algorithm as training data and use the model to make predictions on new unseen data. Ex: % students graduated</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+					<h3>Neural Networks</h3>
+					<img class="transparent plain" src="p_resources/neural-net.png"></img>
+					</section>
+					<section>
+						<p>
+							Neural networks are	composed of multiple nodes, which imitate biological neurons of the human brain. The neurons are connected by links and they interact with each other. The nodes can take input data and perform simple operations on the data. The result of these operations is passed to other neurons. The output at each node is called its activation or node value.
+						</p>
+						<p>Each link is associated with weight. Neural networks are capable of learning, which takes place by altering weight values.</p>
+					</section>
+					<section>
+						<p>A weight is an integer number that controls the signal between the two neurons.</p>
+						<p>If the network generates a 'good or desired' output, there is no need to adjust the weights. However, if the network generates a 'poor or undesired' output or an error, then the system alters the weights in order to improve subsequent results.</p>
+					</section>
+					<section>
+						<p>Neural networks can learn via the methods defined earlier and with reinforcement learning</p>
+						 <p>This strategy is built on observation. The neural network makes a decision by observing its environment. If the observation is negative, the network adjusts its weights to be able to make a different required decision the next time.</p>
+					</section>
+
+					<section>
+						<h3>Perceptron</h3>
+						<p>Single layer neural network</p>
+					</section>
+					<section>
+						<p>Input is multi-dimensional (i.e. input can be a vector):<br><br>
+
+							input x = ( I1, I2, .., In)<br><br>
+
+							Input nodes (or units) are connected (typically fully) to a node (or multiple nodes) in the next layer. A node in the next layer takes a weighted sum of all its inputs</p>
+					</section>
+					<section>
+						<p>The output node has a "threshold" t.</p>
+						<p>Rule: If summed input ≥ t, then it "fires" (output y = 1).</p>
+						<p>Else (summed input < t) it doesn't fire (output y = 0).</p><br>
+						<p>Perceptrons return binary output</p>
+					</section>
+
+					<section>
+						<h3>Backpropagation</h3>
+						<p>Training algorithm for neural networks</p>
+					</section>
+
+					<section>
+						<p>2 steps for backpropogation:</p><br>
+						<p>Feed forward the values (input something at the input layer and it travels from input to hidden and from hidden to output layer. The values are "fed forward".)</p>
+						<p>Calculate the error and propagate it back to the earlier layers</p>
+					</section>
+
+					<section>
+						<b><small>Applications of neural networks:</small></b>
+
+						<small style="text-align: left"><b>Aerospace</b> − Autopilot aircrafts, aircraft fault detection.<br>
+
+						<b>Automotive</b> − Automobile guidance systems.<br>
+
+						<b>Military</b> − Weapon orientation and steering, target tracking, object discrimination, facial recognition, signal/image identification.<br>
+
+						<b>Electronics</b> − Code sequence prediction, IC chip layout, chip failure analysis, machine vision, voice synthesis.<br>
+
+						<b>Financial</b> − Real estate appraisal, loan advisor, mortgage screening, corporate bond rating, portfolio trading program, corporate financial analysis, currency value prediction, document readers, credit application evaluators.<br>
+
+						<b>Industrial</b> − Manufacturing process control, product design and analysis, quality inspection systems, welding quality analysis, paper quality prediction, chemical product design analysis, dynamic modeling of chemical process systems, machine maintenance analysis, project bidding, planning, and management.<br>
+
+						<b>Medical</b> − Cancer cell analysis, EEG and ECG analysis, prosthetic design, transplant time optimizer.<br>
+
+						<b>Speech</b> − Speech recognition, speech classification, text to speech conversion.<br>
+
+						<b>Telecommunications</b> − Image and data compression, automated information services, real-time spoken language translation.<br>
+
+						<b>Transportation</b> − Truck Brake system diagnosis, vehicle scheduling, routing systems.<br>
+
+						<b>Software</b> − Pattern Recognition in facial recognition, optical character recognition, etc.<br>
+
+						<b>Time Series Prediction</b> − Predictions on stocks and natural calamities.<br>
+
+						<b>Signal Processing</b> − Neural networks can be trained to process an audio signal and filter it appropriately in the hearing aids.<br>
+
+						<b>Anomaly Detection</b> − As ANNs are expert at recognizing patterns, they can also be trained to generate an output when something unusual occurs that misfits the pattern.</small>
+					</section>
+
+					<section>
+						<h3>Neural Network Demonstration</h3><br>
+						<p class="fragment">We'll come back to this.</p>
+					</section>
+				</section>
+
+				<section>
+					<h2>Conclusion</h2>
+					<h4>Wake up, it's over</h4>
+				</section>
+
+				<section>
+					<h3>ML @ IWT?</h3>
+					<p class="fragment">Reports</p>
+					<p class="fragment"> - Patient Analytics</p>
+					<p class="fragment"> - And Marketing!</p><br>
+
+					<p class="fragment">ML > Exago</p>
+				</section>
+
+				<section>
+					<h3>Special Topic Ideas</h3><br>
+					<p>Google's TensorFlow</p>
+					<p>Scikit-learn - provides a range of supervised and unsupervised learning algorithms via a consistent interface in Python.</p><br>
+					<p>Real-time analytics - Netflix movie recommendation system, natural language processing</p><br>
+					<p>Recurrent Neural Networks</p>
+				</section>
+
+				<section>
+					<h2>Demonstration Time!?!?!</h2>
+				</section>
+
+				<section>
+					<h2>Export to PDF</h2>
+					<p>Use the 'print-pdf' query string</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
