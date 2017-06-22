@@ -6,44 +6,68 @@
 
 		<title>reveal.js</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/Bootstrap.min.css" >
+		<link rel="stylesheet" href="./plugin/bootflat/css/bootflat.min.css" >
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+		<style>
+			body { background-color: rgb(241, 242, 246); }
+			.navbar-custom { background-color: #fff; opacity: .9; border: none; }
+			.navbar-custom a { color: #127799 !important }
+			.navbar a:hover { color: #333 !important }
+			.jumbotron { height: 500px }
+			.jumbotron-photo { height: 175px; }
+		</style>
 	</head>
 	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+		<nav class="navbar navbar-default navbar-custom" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html">Special Topic Presentations<a>
+				</div>
 			</div>
-		</div>
+		</nav>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+		<main>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="jumbotron">
+							<div class="jumbotron-photo">
+								<img src="#" />
+							</div>
+							<div class="jumbotron-contents">
+								<h2>Machine Learning Introduction</h2>
+								<p>
+									Learn the basics of Machine Learning, including the different types of machine learning, algorithms used, and what it's used for.
+								</p>
+								<a class="btn btn-primary" href="./presentations/machine-learning-intro.html"></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="jumbotron">
+							<div class="jumbotron-photo">
+								<img src="#" />
+							</div>
+							<div class="jumbotron-contents">
+								<h2>React Native</h2>
+								<p>
+									Learn all about React Native, a javscript framework for creating cross-platform applications that compile into the native language of each platform.
+								</p>
+								<a class="btn btn-primary" href="./presentations/react-native.html"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
+		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="./plugin/bootflat/js/jquery.fs.selecter.min.js"></script>
+		<script src="./plugin/bootflat/js/jquery.fs.stepper.min.js"></script>
+		<script src="./plugin/bootflat/js/icheck.min.js"></script>
 	</body>
 </html>

@@ -14,18 +14,18 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="../lib/css/zenburn.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 
@@ -154,7 +154,7 @@
 						<aside class="notes">
 							In practice, x almost always represents multiple data points (coefficients). So, for example, a housing price predictor might take not only square-footage (x1) but also number of bedrooms (x2), number of bathrooms (x3), number of floors (x4), year built (x5), zip code (x6), and so forth. Determining which inputs to use is an important part of ML design. However, for the sake of explanation, it is easiest to assume a single input value is used.
 						</aside>
-					</section>	
+					</section>
 					<section>
 						<h2>h(x) = K + V*x</h2>
 						<p>K & V are constants, X is # sq. feet</p>
@@ -216,15 +216,15 @@
 						<p class="fragment">Most commonly used</p>
 					</section>
 					<section>
-						<p>The Ordinary Least Squares procedure seeks to minimize the sum of the squared residuals.</p> 
+						<p>The Ordinary Least Squares procedure seeks to minimize the sum of the squared residuals.</p>
 						<p>This means that given a regression line through the data we calculate the distance from each data point to the regression line, square it, and sum all of the squared errors together. This is the quantity that ordinary least squares seeks to minimize.</p>
 					</section>
 					<section>
-						<p>This approach treats the data as a matrix and uses linear algebra operations to estimate the optimal values for the coefficients.</p> 
-						<p>It means that all of the data must be available and you must have enough memory to fit the data and perform matrix operations.</p> 
+						<p>This approach treats the data as a matrix and uses linear algebra operations to estimate the optimal values for the coefficients.</p>
+						<p>It means that all of the data must be available and you must have enough memory to fit the data and perform matrix operations.</p>
 					</section>
 					<section>
-						<p>It is unusual to implement the Ordinary Least Squares procedure yourself unless as an exercise in linear algebra.</p> 
+						<p>It is unusual to implement the Ordinary Least Squares procedure yourself unless as an exercise in linear algebra.</p>
 						<p>It is more likely that you will call a procedure in a linear algebra library.</p> <br>
 						<p class="fragment">This procedure is very fast to calculate.</p>
 					</section>
@@ -237,16 +237,16 @@
 						<p class="fragment">Most commonly taught</p>
 					</section>
 					<section>
-						<p>This operation is called Gradient Descent and works by starting with random values for each coefficient. The sum of the squared errors are calculated for each pair of input and output values.</p> 
-						<p>A learning rate is used as a scale factor and the coefficients are updated in the direction towards minimizing the error. The process is repeated until a minimum sum squared error is achieved or no further improvement is possible.</p> 
+						<p>This operation is called Gradient Descent and works by starting with random values for each coefficient. The sum of the squared errors are calculated for each pair of input and output values.</p>
+						<p>A learning rate is used as a scale factor and the coefficients are updated in the direction towards minimizing the error. The process is repeated until a minimum sum squared error is achieved or no further improvement is possible.</p>
 					</section>
 					<section>
-						<p>When using this method, you must select a learning rate (alpha) parameter that determines the size of the improvement step to take on each iteration of the procedure.</p> 
-						<p>Gradient descent is often taught using a linear regression model because it is relatively straightforward to understand. In practice, it is useful when you have a very large dataset either in the number of rows or the number of columns that may not fit into memory.</p> 
+						<p>When using this method, you must select a learning rate (alpha) parameter that determines the size of the improvement step to take on each iteration of the procedure.</p>
+						<p>Gradient descent is often taught using a linear regression model because it is relatively straightforward to understand. In practice, it is useful when you have a very large dataset either in the number of rows or the number of columns that may not fit into memory.</p>
 					</section>
 					<section>
 						<h3>4. Regularization</h3>
-						<p>There are extensions of the training of the linear model called regularization methods.</p> 
+						<p>There are extensions of the training of the linear model called regularization methods.</p>
 						<p>These seek to both minimize the sum of the squared error of the model on the training data (using ordinary least squares) but also to reduce the complexity of the model (like the number or absolute size of the sum of all coefficients in the model).</p>
 					</section>
 					<section>
@@ -265,17 +265,17 @@
 						<p>Overfitting refers to a model that models the training data too well.</p>
 					</section>
 					<section>
-						<p>Overfitting happens when a model learns the detail and noise in the training data to the extent that it negatively impacts the performance on the model on new data.</p> 
-						<p>This means that the noise or random fluctuations in the training data is picked up and learned as concepts by the model.</p> 
+						<p>Overfitting happens when a model learns the detail and noise in the training data to the extent that it negatively impacts the performance on the model on new data.</p>
+						<p>This means that the noise or random fluctuations in the training data is picked up and learned as concepts by the model.</p>
 						<p>The problem is that these concepts do not apply to new data and negatively impact the models ability to generalize.</p>
 					</section>
 					<section>
-						<p>Overfitting is more likely with nonparametric and nonlinear models that have more flexibility when learning a target function.</p> 
-						<p>As such, many nonparametric machine learning algorithms also include parameters or techniques to limit and constrain how much detail the model learns.</p> 
+						<p>Overfitting is more likely with nonparametric and nonlinear models that have more flexibility when learning a target function.</p>
+						<p>As such, many nonparametric machine learning algorithms also include parameters or techniques to limit and constrain how much detail the model learns.</p>
 					</section>
 					<section>
 						<p>For example, decision trees are a nonparametric machine learning algorithm that are very flexible and are subject to overfitting training data.</p>
-						<p>This problem can be addressed by 'pruning' a tree after it has learned in order to remove some of the detail it has picked up.</p> 
+						<p>This problem can be addressed by 'pruning' a tree after it has learned in order to remove some of the detail it has picked up.</p>
 					</section>
 				</section>
 
@@ -286,8 +286,8 @@
 					</section>
 					<section>
 						<p>An underfit machine learning model is not a suitable model and will be obvious as it will have poor performance on the training data.</p>
-						<p>Underfitting is often not discussed as it is easy to detect given a good performance metric.</p> 
-						<p>The remedy is to move on and try alternate machine learning algorithms.</p> 
+						<p>Underfitting is often not discussed as it is easy to detect given a good performance metric.</p>
+						<p>The remedy is to move on and try alternate machine learning algorithms.</p>
 						<p>Nevertheless, it does provide good contrast to the problem of concept of overfitting.</p>
 					</section>
 				</section>
@@ -298,24 +298,24 @@
 					</section>
 					<section>
 						<h4>1. Linear Assumption</h4>
-						<p>Linear regression assumes that the relationship between your input and output is linear. It does not support anything else.</p> 
-						<p>This may be obvious, but it is good to remember when you have a lot of attributes.</p> 
+						<p>Linear regression assumes that the relationship between your input and output is linear. It does not support anything else.</p>
+						<p>This may be obvious, but it is good to remember when you have a lot of attributes.</p>
 						<p>You may need to transform data to make the relationship linear (e.g. log transform for an exponential relationship).</p>
 					</section>
 					<section>
 						<h4>2. Remove Noise</h4>
-						<p>Linear regression assumes that your input and output variables are not noisy.</p> 
-						<p>Consider using data cleaning operations that let you better expose and clarify the signal in your data.</p> 
+						<p>Linear regression assumes that your input and output variables are not noisy.</p>
+						<p>Consider using data cleaning operations that let you better expose and clarify the signal in your data.</p>
 						<p>This is most important for the output variable and you want to remove outliers in the output variable (y) if possible.</p>
 					</section>
 					<section>
 						<h4>3. Remove Collinearity</h4>
-						<p>Linear regression will over-fit your data when you have highly correlated input variables.</p> 
+						<p>Linear regression will over-fit your data when you have highly correlated input variables.</p>
 						<p>Consider calculating pairwise correlations for your input data and removing the most correlated.</p>
 					</section>
 					<section>
 						<h4>4. Gaussian Distributions</h4>
-						<p>Linear regression will make more reliable predictions if your input and output variables have a Gaussian distribution.</p> 
+						<p>Linear regression will make more reliable predictions if your input and output variables have a Gaussian distribution.</p>
 						<p>You may get some benefit using transforms (e.g. log or BoxCox) on you variables to make their distribution more Gaussian looking.</p><br>
 						<p class="fragment">Gaussian Process = Research Topic</p>
 					</section>
@@ -330,7 +330,7 @@
 						<h2>Classification</h2>
 					</section>
 					<section>
-						<p>Classification is the problem of identifying to which of a set of categories (sub-populations) a new observation belongs, on the basis of a training set of data containing observations (or instances) whose category membership is known.</p>  
+						<p>Classification is the problem of identifying to which of a set of categories (sub-populations) a new observation belongs, on the basis of a training set of data containing observations (or instances) whose category membership is known.</p>
 						<p>Classification is an example of pattern recognition.</p>
 						<p>An algorithm that implements classification is known as a classifier.</p>
 
@@ -506,8 +506,8 @@
 
 		</div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+		<script src="../lib/js/head.min.js"></script>
+		<script src="../js/reveal.js"></script>
 
 		<script>
 
@@ -522,12 +522,12 @@
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
+					{ src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../plugin/zoom-js/zoom.js', async: true },
+					{ src: '../plugin/notes/notes.js', async: true }
 				]
 			});
 
