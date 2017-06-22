@@ -16,50 +16,29 @@
 			.navbar-custom { background-color: #fff; opacity: .9; border: none; }
 			.navbar-custom a { color: #127799 !important }
 			.navbar a:hover { color: #333 !important }
-			.jumbotron { height: 500px }
-			.jumbotron-photo { height: 175px; }
+			.jumbotron { position: relative; }
+			.jumbotron-md { height: 500px; }
+			.jumbotron-lg { height: 600px; }
+			.jumbotron-md .jumbotron-photo { height: 175px; }
+			.jumbotron-lg .jumbotron-photo { height: 220px; }
+			.jumbotron span {position: absolute; top: 0; margin: 2px;}
+			.jumbotron button { position: absolute; bottom: 0; right: 0; margin: 15px }
 		</style>
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-custom" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="index.html">Special Topic Presentations<a>
+					<a class="navbar-brand" href="index.html">Special Topic Presentations</a>
 				</div>
 			</div>
 		</nav>
 
 		<main>
 			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<div class="jumbotron">
-							<div class="jumbotron-photo">
-								<img src="#" />
-							</div>
-							<div class="jumbotron-contents">
-								<h2>Machine Learning Introduction</h2>
-								<p>
-									Learn the basics of Machine Learning, including the different types of machine learning, algorithms used, and what it's used for.
-								</p>
-								<a class="btn btn-primary" href="./presentations/machine-learning-intro.html"></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="jumbotron">
-							<div class="jumbotron-photo">
-								<img src="#" />
-							</div>
-							<div class="jumbotron-contents">
-								<h2>React Native</h2>
-								<p>
-									Learn all about React Native, a javscript framework for creating cross-platform applications that compile into the native language of each platform.
-								</p>
-								<a class="btn btn-primary" href="./presentations/react-native.html"></a>
-							</div>
-						</div>
-					</div>
+				<div id="jumboRowUpNext" class="row">
+				</div>
+				<div id="jumboRow" class="row">
 				</div>
 			</div>
 		</main>
@@ -69,5 +48,107 @@
 		<script src="./plugin/bootflat/js/jquery.fs.selecter.min.js"></script>
 		<script src="./plugin/bootflat/js/jquery.fs.stepper.min.js"></script>
 		<script src="./plugin/bootflat/js/icheck.min.js"></script>
+
+		<script>
+			const status = {
+				completed: 'Completed',
+				next: 'Next',
+				future: 'Future'
+			};
+
+			const cards = [{
+				title: 'Machine Learning Introduction',
+				description: 'Learn the basics of Machine Learning, including the different types of machine learning, algorithms used, and what it\'s used for.',
+				image: '#',
+				url: './presentations/machine-learning-intro.html',
+				status: status.completed
+			}, {
+				title: 'React Native',
+				description: 'Learn all about React Native, a javscript framework for creating cross-platform applications that compile into the native language of each platform.',
+				image: '#',
+				url: './presentations/react-native.html',
+				status: status.next
+			}];
+
+			const redir = (url) => window.location.href = url;
+			const insert = (parent, html) => $(parent).html(html);
+			const div = (props, innerHtml) => `<div ${attrs(props)}>${innerHtml}</div>`;
+			var img, image, btn, button, element;
+			img = image = (props) => `<img ${attrs(props)} />`;
+			btn = button = (props, innerHtml) => `<button ${attrs(props)}>${innerHtml}</button>`;
+			const h = (size, props, innerHtml) => `<h${size} ${attrs(props)}>${innerHtml}</h${size}>`;
+			const p = (props, innerHtml) => `<p ${attrs(props)}>${innerHtml}</p>`;
+			const input = (props) => `<input ${attrs(props)} />`;
+			const span = (props, innerHtml) => `<span ${attrs(props)}>${innerHtml}</span>`;
+			element = (elem, props, innerHtml) => `<${elem} ${attrs(props)}>${innerHtml}</${elem}>`;
+			const attrs = (props) => {
+				var attrs = '';
+				for(var key in props) {
+					attrs += ' ' + key+'="'+props[key] + '"';
+				}
+
+				return attrs;
+			};
+			const jumbotron = (props) => div({class: `col-md-${props.col}`},
+				div({class: `jumbotron ${props.class || ''}`},
+					span({class: props.spanClass}, props.spanText || '') +
+					div({class: 'jumbotron-photo'},
+						img({src: props.image})) +
+					div({class: 'jumbotron-contents'},
+						h(2, {}, props.title) +
+						p({}, props.description) +
+						button({class: 'btn btn-primary', onclick:'redir("./presentations/machine-learning-intro.html")', role:'navigation'}, props.btnText || 'Check it out!')
+					)
+				)
+			);
+
+			var html = '';
+			for (var i = 0, n = 0; i < cards.length; i++, n++) {
+				if(cards[i].status === status.next) {
+					insert('#jumboRowUpNext', jumbotron($.extend({}, cards[i], {class: 'jumbotron-lg col-lg-offset-4', col: 9, btnText: 'Ready?'})));
+				}
+
+				if (n === 0) {
+					let jumboHtml = '';
+					for (var x = 0; x < 3; x++) {
+						if(i+x < cards.length) {
+							let spanText = '';
+							let spanClass = '';
+							switch (cards[i+x].status) {
+								case status.completed:
+									spanText = 'Completed';
+									spanClass = 'label-success';
+									break;
+								case status.next:
+									spanText = 'Up Next';
+									spanClass = 'label-primary';
+									break;
+								case status.future:
+									spanText = 'Coming Soon';
+									spanClass = 'label-info'
+									break;
+								default:
+									spanText = '';
+									spanClass = '';
+									break;
+							}
+
+							jumboHtml += jumbotron($.extend({}, cards[i+x], {col: 4, class: 'jumbotron-md', spanClass: `label ${spanClass}`, spanText: spanText}));
+						}
+					}
+
+					html += div({class: 'row'},
+						jumboHtml
+					);
+
+					continue;
+				}
+
+				if(n===2)
+					n = 0;
+			}
+
+			insert('#jumboRow', html);
+		</script>
 	</body>
 </html>
