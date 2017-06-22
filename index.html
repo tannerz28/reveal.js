@@ -22,6 +22,7 @@
 			.jumbotron-md .jumbotron-photo { height: 175px; }
 			.jumbotron-lg .jumbotron-photo { height: 220px; }
 			.jumbotron span {position: absolute; top: 0; margin: 2px;}
+			.jumbotron .alert {position: absolute; top: 0; margin: 5px; width: 200px; left: 0; right: 0;}
 			.jumbotron button { position: absolute; bottom: 0; right: 0; margin: 15px }
 		</style>
 	</head>
@@ -61,13 +62,13 @@
 				description: 'Learn the basics of Machine Learning, including the different types of machine learning, algorithms used, and what it\'s used for.',
 				image: '#',
 				url: './presentations/machine-learning-intro.html',
-				status: status.completed
+				status: 'Completed'
 			}, {
 				title: 'React Native',
 				description: 'Learn all about React Native, a javscript framework for creating cross-platform applications that compile into the native language of each platform.',
 				image: '#',
 				url: './presentations/react-native.html',
-				status: status.next
+				status: 'Next'
 			}];
 
 			const redir = (url) => window.location.href = url;
@@ -92,6 +93,7 @@
 			const jumbotron = (props) => div({class: `col-md-${props.col}`},
 				div({class: `jumbotron ${props.class || ''}`},
 					span({class: props.spanClass}, props.spanText || '') +
+					div({class: `alert ${props.alertClass}`}, h(3, {}, props.alertText || '')) +
 					div({class: 'jumbotron-photo'},
 						img({src: props.image})) +
 					div({class: 'jumbotron-contents'},
@@ -105,7 +107,7 @@
 			var html = '';
 			for (var i = 0, n = 0; i < cards.length; i++, n++) {
 				if(cards[i].status === status.next) {
-					insert('#jumboRowUpNext', jumbotron($.extend({}, cards[i], {class: 'jumbotron-lg col-lg-offset-4', col: 9, btnText: 'Ready?'})));
+					insert('#jumboRowUpNext', jumbotron($.extend({}, cards[i], {class: 'jumbotron-lg col-lg-offset-4', col: 9, btnText: 'Ready?', alertClass: 'alert-info', alertText: 'Up Next!!!'})));
 				}
 
 				if (n === 0) {
