@@ -95,7 +95,6 @@
 			const jumbotron = (props) => div({class: `col-md-${props.col}`},
 				div({class: `jumbotron ${props.class || ''}`},
 					span({class: props.spanClass}, props.spanText || '') +
-					div({class: `alert ${props.alertClass}`}, h(3, {}, props.alertText || '')) +
 					div({class: 'jumbotron-photo'},
 						img({src: props.image})) +
 					div({class: 'jumbotron-contents'},
@@ -111,11 +110,19 @@
 				hr({class: 'dashed'})
 			);
 
+			if(cards.length > 0) {
+				var nexts = cards.filter(({ status }) => status.next);
+
+				if(nexts.length > 1) {
+					
+				}
+			}
+
 			var html = '';
 			for (var i = 0, n = 0; i < cards.length; i++, n++) {
 				if(cards[i].status === status.next) {
 					const seperator = divider({}, "Up Next!");
-					insert('#jumboRowUpNext', seperator + jumbotron($.extend({}, cards[i], {class: 'jumbotron-lg col-lg-offset-4', col: 9, btnText: 'Ready?', alertClass: 'alert-info', alertText: 'Up Next!!!'})));
+					insert('#jumboRowUpNext', seperator + jumbotron($.extend({}, cards[i], {class: 'jumbotron-lg col-lg-offset-4', col: 9, btnText: 'Ready?'})));
 				}
 
 				if (n === 0) {
