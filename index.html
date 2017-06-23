@@ -24,13 +24,14 @@
 			.jumbotron span {position: absolute; top: 0; margin: 2px;}
 			.jumbotron .alert {position: absolute; top: 0; margin: 5px; width: 200px; left: 0; right: 0;}
 			.jumbotron button { position: absolute; bottom: 0; right: 0; margin: 15px }
+			hr.dashed { border-top: 1px dashed #ccc; }
 		</style>
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-custom" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="index.html">Special Topic Presentations</a>
+					<a class="navbar-brand" href="/">Special Topic Presentations</a>
 				</div>
 			</div>
 		</nav>
@@ -74,14 +75,15 @@
 			const redir = (url) => window.location.href = url;
 			const insert = (parent, html) => $(parent).html(html);
 			const div = (props, innerHtml) => `<div ${attrs(props)}>${innerHtml}</div>`;
-			var img, image, btn, button, element;
+			var img, image, btn, button;
 			img = image = (props) => `<img ${attrs(props)} />`;
 			btn = button = (props, innerHtml) => `<button ${attrs(props)}>${innerHtml}</button>`;
 			const h = (size, props, innerHtml) => `<h${size} ${attrs(props)}>${innerHtml}</h${size}>`;
+			const hr = (props) => `<hr ${attrs(props)} />`;
 			const p = (props, innerHtml) => `<p ${attrs(props)}>${innerHtml}</p>`;
 			const input = (props) => `<input ${attrs(props)} />`;
 			const span = (props, innerHtml) => `<span ${attrs(props)}>${innerHtml}</span>`;
-			element = (elem, props, innerHtml) => `<${elem} ${attrs(props)}>${innerHtml}</${elem}>`;
+			const element = (elem, props, innerHtml) => `<${elem} ${attrs(props)}>${innerHtml}</${elem}>`;
 			const attrs = (props) => {
 				var attrs = '';
 				for(var key in props) {
@@ -99,15 +101,21 @@
 					div({class: 'jumbotron-contents'},
 						h(2, {}, props.title) +
 						p({}, props.description) +
-						button({class: 'btn btn-primary', onclick:'redir("./presentations/machine-learning-intro.html")', role:'navigation'}, props.btnText || 'Check it out!')
+						button({class: 'btn btn-primary', onclick:`redir('${props.url}')`, role:'navigation'}, props.btnText || 'Check it out!')
 					)
 				)
+			);
+
+			const divider = (props, title) => div({class: 'row'},
+				h(4, {}, title)+
+				hr({class: 'dashed'})
 			);
 
 			var html = '';
 			for (var i = 0, n = 0; i < cards.length; i++, n++) {
 				if(cards[i].status === status.next) {
-					insert('#jumboRowUpNext', jumbotron($.extend({}, cards[i], {class: 'jumbotron-lg col-lg-offset-4', col: 9, btnText: 'Ready?', alertClass: 'alert-info', alertText: 'Up Next!!!'})));
+					const seperator = divider({}, "Up Next!");
+					insert('#jumboRowUpNext', seperator + jumbotron($.extend({}, cards[i], {class: 'jumbotron-lg col-lg-offset-4', col: 9, btnText: 'Ready?', alertClass: 'alert-info', alertText: 'Up Next!!!'})));
 				}
 
 				if (n === 0) {
@@ -147,7 +155,7 @@
 				}
 
 				if(n===2)
-					n = 0;
+					n = -1;
 			}
 
 			insert('#jumboRow', html);
