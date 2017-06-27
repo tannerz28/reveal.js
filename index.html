@@ -114,7 +114,9 @@
 				var nexts = cards.filter(({ status }) => status.next);
 
 				if(nexts.length > 1) {
-					
+					// If user provides data and there are more than one item that has the 'Next' status
+					// Will break the UI, so we need to prevent the UI from breaking
+
 				}
 			}
 
@@ -155,6 +157,7 @@
 					}
 
 					html += div({class: 'row'},
+						divider({}, 'All Presentations') +
 						jumboHtml
 					);
 
