@@ -8,16 +8,8 @@
 		<meta name="description" content="A framework for creating mobile apps using native components">
 		<meta name="author" content="Tanner Goins">
 
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 		<link rel="stylesheet" href="../css/reveal.css">
-		<link rel="stylesheet" href="../css/theme/black.css" id="theme">
-
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="../lib/css/zenburn.css">
+		<link rel="stylesheet" href="../css/styles.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -27,20 +19,6 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
-
-		<style type="text/css">
-			.transparent {
-				border: 0 !important;
-				background: none !important;
-			}
-
-			li.heirarchy {
-			    border-left: 1px solid #000;
-			    margin-left: 10px;
-			    margin-top: 5px;
-			    padding-left: 10px;
-			}
-		</style>
 
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
@@ -53,38 +31,143 @@
 
 				<!--
 				[Style Guide]
-
-				*Parent Slide
-					- h1: title
+					- h2: title
 					- h3: subtitle
 					- p: anything else
-
-				* Nested Slides
-					- h2: title
-					- p: everything else
 				-->
 
 				<section>
-					<h1>React Native</h1>
+					<h2>React Native</h2>
 					<h3>Build mobile apps with React</h3>
 					<span class="fragment"><p><blockquote cite="The Nerds at Facebook">&ldquo;Learn Once, Write Anywhere&rdquo;</blockquote></p></span>
 				</section>
 
 				<section>
-					<h1>Who uses It?</h1>
+					<h2>What is it?</h2>
+					<ul>
+						<li>Framework for writing applications - for mobile platforms.</li>
+						<li>Make apps using JavaScript (for the most part)</li>
+						<li>Allows you to quickly build and iterate on an application</li>
+						<li>Made by Facebook</li>
+						<li>Open source</li>
+						<li>Component driven</li>
+					</ul>
+				</section>
+
+				<section>
+            <p>It looks like ReactJS...</p>
+            <pre><code class="javascript">
+              class Foo extends React.Component {
+                render() {
+                  return (
+                    &lt;a href="//hooli.xyz"&gt;
+                      &lt;p&gt;some text&lt;/p&gt;
+                    &lt;/a&gt;
+                  );
+                }
+              }
+            </code></pre>
+            <pre class="fragment"><p>Not entirely...</p><code class="javascript">
+              class FooNative extends React.Component {
+                _handlePress() {
+                  const platformMethod = Platform.OS === 'ios' ? LinkingIOS : IntentAndroid;
+                  platformMethod.openURL('https://hooli.xyz');
+                }
+                render(){
+                  return (
+                    &lt;TouchableHighlight onPress={this._handlePress}&gt;
+                      &lt;Text&gt;some text&lt;/Text&gt;
+                    &lt;/TouchableHighlight&gt;
+                  );
+                }
+              }
+            </code></pre>
+          </section>
+
+				<section>
+					<h2>Why React Native?</h2>
+					<section>
+						<em>"You are a web developer, and want to do native"</em>
+					</section>
+					<section>
+						<h3>Advantages</h3>
+						<ul>
+							<li>Shared code between iOS and Android</li>
+							<li>More JS developers available than native developers</li>
+							<li>Faster iteration when developing (hot reloading, easier to reason about state)</li>
+							<li>Can prototype quickly</li>
+							<li>Not a WebView!</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Disadvantages</h3>
+						<ul>
+							<li>Not as performant as a pure native application.</li>
+							<li>Fast paced community. Lots of change</li>
+							<li><a href="https://facebook.github.io/react-native/docs/getting-started.html">Documentation?</a></li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>Setup</h2>
+					<section>
+						<h3>Android</h3>
+						<ul>
+							<li>Android Studio</li>
+							<li>Android Virtual Device (AVD)</li>
+							<li>$ANDROID_HOME</li>
+							<li>$JAVA_HOME</li>
+						</ul>
+					</section>
+					<section>
+						<h3>iOS</h3>
+						<ul>
+							<li>*Requires Mac* <span class="fragment"><em>Apple is garbage</em></span></li>
+							<li>XCode >= 7</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>Who uses It?</h2>
 					<p>
 						<a href="https://facebook.github.io/react-native/showcase.html">A few people...</a>
 					</p>
 				</section>
 
 				<section>
-					<h1>What is it?</h1>
-					<p class="fragment fade-out">iT,S jUsT AnOTheR JavAScRiPt fRamEwOrK!11!<span class="fragment"> - Jesse Moore</span><p>
-					<img src="#"/>
-					<p class="fragment fade-up">Hint - It's not.<p>
-
+					<section>
+						<h2>Components</h2>
+            <p>HTML Components, Native equivalent</p>
+            <ul>
+              <li class="fragment">p &rarr; Text</li>
+              <li class="fragment">input &rarr; TextInput</li>
+              <li class="fragment">checkbox &rarr; Switch</li>
+              <li class="fragment">div &rarr; View</li>
+              <li class="fragment">button &rarr;
+                <ul>
+                  <li class="fragment">TouchableHighlight</li>
+                  <li class="fragment">TouchableWithoutFeedback</li>
+                  <li class="fragment">TouchableNativeFeedback</li>
+                  <li class="fragment">TouchableOpacity</li>
+                </ul>
+              </li>
+              <li class="fragment">a &rarr; ¯\_(ツ)_/¯</li>
+            </ul>
+          </section>
+					<section>
+            <h3>Better HTML Components!</h3>
+            <ul>
+              <li class="fragment">ListView</li>
+              <li class="fragment">MapView</li>
+              <li class="fragment">Navigator</li>
+              <li class="fragment">Picker</li>
+              <li class="fragment">ProgressBars</li>
+            </ul>
+            <h4 class="fragment">And more from the community!</h4>
+          </section>
 				</section>
-
 			</div>
 		</div>
 
