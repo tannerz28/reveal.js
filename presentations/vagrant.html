@@ -3,13 +3,18 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>React Native</title>
+		<title>Vagrant</title>
 
-		<meta name="description" content="A framework for creating mobile apps using native components">
+		<meta name="description" content="Development environments made easy">
 		<meta name="author" content="Tanner Goins">
 
 		<link rel="stylesheet" href="../css/reveal.css">
 		<link rel="stylesheet" href="../css/styles.css">
+		<style>
+			.reveal{
+				font-size: 25px;
+			}
+		</style>
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -37,21 +42,60 @@
 				-->
 
 				<section>
-					<h2>React Native</h2>
-					<h3>Build mobile apps with React</h3>
-					<span class="fragment"><p><blockquote cite="The Nerds at Facebook">&ldquo;Learn Once, Write Anywhere&rdquo;</blockquote></p></span>
+					<h2>Vagrant</h2>
 				</section>
 
 				<section>
-					<h2>What is it?</h2>
-					<ul>
-						<li class="fragment">Framework for writing cross-platform mobile applications</li>
-						<li class="fragment">Uses JavaScript*</li>
-						<li class="fragment">Allows you to quickly build and iterate on an application</li>
-						<li class="fragment">Made by Facebook</li>
-						<li class="fragment">Open source</li>
-						<li class="fragment">Component driven</li>
-					</ul>
+					<section>
+						<h2>Introduction</h2>
+					</section>
+					<section>
+						<h2>What is Vagrant?</h2>
+						<a href="http://www.vagrantup.com/">http://www.vagrantup.com/</a>
+						<ul>
+							<li>Written by Mitchell Hashimoto</li>
+							<li>Command line tool</li>
+							<li>Written in Ruby</li>
+							<li>Automates VM creation
+								<ul>
+									<li>VirtualBox</li>
+									<li>VMWare</li>
+									<li>Hyper-V</li>
+									<li>Parallels</li>
+								</ul>
+							</li>
+							<li>Create environments that are similar as possible or identical with production servers</li>
+							<li>
+								Integrates well with configuration management tools
+								<ul>
+									<li>Shell</li>
+										<li>Ansible</li>
+										<li>Chef</li>
+										<li>Puppet</li>
+								</ul>
+							</li>
+							<li>Runs on Linux, Windows, MacOS</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Why use Vagrant?</h2>
+						<ul>
+							<li>Create new VMs quickly and easily
+								<ul>
+									<li>Only one command! <pre><code>vagrant up</code></pre></li>
+								</ul>
+							</li>
+							<li>Keep the number of VMs under control</li>
+							<li>Reproducability</li>
+							<li>Identical environment in development and production</li>
+							<li>Portability
+								<ul>
+									<li>No more 4GB .ova files</li>
+									<li>git clone and vagrant up</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
 				</section>
 
 				<section>

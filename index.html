@@ -69,7 +69,25 @@
 				description: 'Learn all about React Native, a javascript framework for creating cross-platform applications that compile into the native language of each platform.',
 				image: '#',
 				url: './presentations/react-native.html',
+				status: 'Future'
+			}, {
+				title: 'Vagrant',
+				description: 'Easily set up development environments with virtual machines.',
+				image: '#',
+				url: './presentations/vagrant.html',
 				status: 'Next'
+			}, {
+				title: 'Vue.js',
+				description: 'Like Angular, but better!',
+				image: '#',
+				url: './presentations/vue.html',
+				status: 'Future'
+			}, {
+				title: 'Hapi.js',
+				description: 'Server-side javascript framework that does stuff',
+				image: '#',
+				url: './presentations/hapi.html',
+				status: 'Future'
 			}];
 
 			const redir = (url) => window.location.href = url;
@@ -157,10 +175,16 @@
 						}
 					}
 
+					if(i < 3) {
+						html += div({class: 'row'},
+							divider({}, 'All Presentations') +
+							jumboHtml
+						);
+				} else {
 					html += div({class: 'row'},
-						divider({}, 'All Presentations') +
 						jumboHtml
 					);
+				}
 
 					continue;
 				}
